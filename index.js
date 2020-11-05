@@ -1,6 +1,5 @@
 require("dotenv").config();
 
-const permInteger = '271961121';
 
 const Discord = require("discord.js");
 const fs = require("fs");
@@ -14,6 +13,7 @@ fs.readdir("./events/", (err, files) => {
 ;})});
 
 client.login(process.env.BOT_TOKEN);
+const permInteger = '271961121';
 
 
 client.on("ready", () => {
