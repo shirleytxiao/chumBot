@@ -1,81 +1,99 @@
 const Discord = require("discord.js");
 const fs = require("fs");
 const config = require("./config.json");
-const client = new Discord.Client();
+const bot = new Discord.Client();
 
 fs.readdir("./events/", (err, files) => {  
   files.forEach((file) => {
     const eventHandler = require(`./events/${file}`);
     const eventName = file.split(".")[0];
-    client.on(eventName, (...args) => eventHandler(client, ...args));
+    bot.on(eventName, (...args) => eventHandler(bot, ...args));
 ;})});
 
-client.login(process.env.BOT_TOKEN);
-const permInteger = '271961121';
+bot.login(process.env.BOT_TOKEN);
 
-
-client.on("ready", () => {
-  console.log(`Logged in as ${client.user.tag}!`)
+bot.on("ready", () => {
+  console.log(`Logged in as ${bot.user.tag}!`)
 }) 
+
+const args = message.content.slice(prefix.length).trim().split(/ +/g);
+const command = args.shift().toLowerCase();
 
 //event listeners
 
-client.on("message", (message) => {
-  if (!message.content.startsWith(config.prefix) || message.author.bot) return;
+bot.on("message", (message) => {
+  if (message.author.bot) return;
+  if (message.content.indexOf(config.prefix) !== 0) return;
 
   // greeting test
-  client.on("message", (msg) => {
-    if (msg.content === "test") {
-      msg.reply("hey!")
+  bot.on("message", (message) => {
+    if (message.content === "test") {
+      message.reply("hey!")
     }
   })
 
   // new member welcome
-  client.on("guildMemberAdd", (member) => {
-    member.send(
-      `Welcome to the Ascend server! Please be aware that we won't tolerate troll, spam or harassment. Have fun 😀`
-    )
+  bot.on("guildMemberAdd", (member) => {
+    member.send(`Welcome to the Ascend server! Please be aware that we won't tolerate troll, spam or harassment. Have fun 😀`)
   })
 
-  // kick member 
-  client.on("message", (message) => {
+  // prefix + commands
+  bot.on("message", (message) => {
     // help
-    if (message.content.startsWith(config.prefix + "help")) {
+    if (command === "help") {
       return message.reply('commands: !')
     }
     
     // kick 
-    if (message.content.startsWith(config.prefix + "kick")) {
-      const member = message.mentions.members.first()
+    if (command === "kick") {
+      let member = message.mentions.members.first();      
       if (!member) {
         return message.reply(`Who are you trying to kick? You must mention a user.`)
       }
       if (!member.kickable) {
         return message.reply(`I can't kick this user. Sorry!`)
       }
+      let reason = args.slice(1).join(" ");
       return member
-        .kick()
+        .kick(reason)
         .then(() => message.reply(`${member.user.tag} was kicked.`))
         .catch((error) => message.reply(`Sorry, an error occured.`))
     }
+
+    // aboutme: year, location, committee
+    if (command === "aboutme") {
+      let [year, location, committee] = args;
+      let year_name = "";
+      switch (year) {
+        case "1" :
+          year_name = "freshman";
+          break;
+        case "2" :
+          year_name = "sophomore";
+          break;
+        case "3" :
+          year_name = "junior";
+          break;
+        case "4" :
+          year_name = "senior";
+          break;
+      }
+      message.reply(`Hello ${message.author.username}, I see you're a ${year_name} from ${location} in the ${committee} committee.`);
+    }
+
+    // event: create event & generate google calendar invite
+      // ex) !event General Meeting in 5 hours
+      // !event Social at 6 PM on Wednesday
+      // !event Presentation on 11/21 at 7:00 PM
+
+    // poll
+
+    // !list: lists all future events made on this server, with links to each event msg
+
+    // !delete: deletes event
+
+    // !chum: suggests other user(s) with similar interests based on keywords
+      // ex) !chum boba CSGO tennis photography
+      // ex) !chum CS61A UGBA10
   })
 });
-
-
-
-
-
-// message counter
-// let counter = 0;
-
-// client.on(`message`, (receivedMessage) => 
-// {
-//     if (receivedMessage.channel.id == '756683017233235989') { // change channel id
-//       count(receivedMessage);
-// }
-// });
-
-// function count(receivedMessage) {
-//     counter++;
-//     receivedMessage.channel.send(counter);
-// }
