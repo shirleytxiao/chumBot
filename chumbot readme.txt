@@ -1,0 +1,9 @@
+- created and added bot to test server
+- added features:
+	- ping, "pong"
+	- welcomes user
+- added commands:
+	- kick user
+		- kick.js in message.js
+- event readers
+- set up heroku for eternal deployment
