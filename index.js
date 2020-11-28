@@ -8,6 +8,7 @@ fs.readdir("./events/", (err, files) => {
     const eventHandler = require(`./events/${file}`);
     const eventName = file.split(".")[0];
     bot.on(eventName, (...args) => eventHandler(bot, ...args));
-;})});
+  })
+});
 
 bot.login(process.env.BOT_TOKEN);
