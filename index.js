@@ -40,7 +40,7 @@ bot.on("message", (message) => {
   // kill bot
   if (message.content == '!stop') {
     message.reply("goodbye!")
-    bot.logout()
+    bot.disconnect()
   }
 
   // help
