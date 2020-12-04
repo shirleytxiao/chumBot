@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-// const config = require("./config.json");
+const config = require("./config.json");
 const bot = new Discord.Client();
 
 fs.readdir("./events/", (err, files) => {  
@@ -10,7 +10,7 @@ fs.readdir("./events/", (err, files) => {
     bot.on(eventName, (...args) => eventHandler(bot, ...args));
 ;})});
 
-bot.login(process.env.BOT_TOKEN);
+bot.login(config.token);
 
 bot.on("ready", () => {
   console.log(`Logged in as ${bot.user.tag}!`)
