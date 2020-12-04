@@ -33,12 +33,12 @@ bot.on("message", (message) => {
   if (message.content.indexOf(config.prefix) !== 0) return;
   
   // greeting test
-  if (message.content === "test") {
+  if (command === "test") {
     return message.reply("hey!")
   }  
 
   // kill bot
-  if (message.content == 'stop') {
+  if (command == 'stop') {
     message.reply("goodbye!")
     bot.disconnect()
   }
