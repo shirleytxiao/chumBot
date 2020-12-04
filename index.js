@@ -27,10 +27,14 @@ bot.on("message", (message) => {
   if (message.author.bot) return;
   if (message.content.indexOf(config.prefix) !== 0) return;
 
-  // greeting test
   bot.on("message", (message) => {
+    // greeting test
     if (message.content === "test") {
       message.reply("hey!")
+    }  
+    // kill bot
+    if (message.content == '!stop') {
+      await client.logout()
     }
   })
 
@@ -43,17 +47,17 @@ bot.on("message", (message) => {
   bot.on("message", (message) => {
     // help
     if (command === "help") {
-      return message.reply('commands: !')
+      message.reply('commands: !')
     }
     
     // kick 
     if (command === "kick") {
       let member = message.mentions.members.first();      
       if (!member) {
-        return message.reply(`Who are you trying to kick? You must mention a user.`)
+        message.reply(`Who are you trying to kick? You must mention a user.`)
       }
       if (!member.kickable) {
-        return message.reply(`I can't kick this user. Sorry!`)
+        message.reply(`I can't kick this user. Sorry!`)
       }
       let reason = args.slice(1).join(" ");
       return member
