@@ -33,20 +33,14 @@ bot.on("message", (message) => {
   if (message.content.indexOf(config.prefix) !== 0) return;
   
   // greeting test
-  if (command === "test") {
+  if (command === "hi") {
     return message.reply("hey!")
   }  
 
-  // kill bot
-  if (command == 'stop') {
-    return message.reply("goodbye!")
-    bot.disconnect()
-  }
-
   // help
-  // if (command === "help") {
-  //   message.reply('commands: !')
-  // }
+  if (command === "help") {
+    return message.reply('commands: \n!hi   --- greeting \n!kick <user>   --- kick user out of server \n!aboutme <1/2/3/4> <location> <committee>   --- greets you by your year (1, 2, 3, or 4), location, and committee.')
+  }
   
   // kick 
   if (command === "kick") {
