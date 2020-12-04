@@ -74,6 +74,8 @@ bot.on("message", (message) => {
   }
 
   // play music
+  const serverQueue = queue.get(message.guild.id);
+
   if (command === "play") {
     execute(message, serverQueue);
     return;
