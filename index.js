@@ -39,7 +39,7 @@ bot.on("message", (message) => {
 
   // kill bot
   if (command == 'stop') {
-    message.reply("goodbye!")
+    return message.reply("goodbye!")
     bot.disconnect()
   }
 
