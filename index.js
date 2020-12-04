@@ -34,7 +34,8 @@ bot.on("message", (message) => {
     }  
     // kill bot
     if (message.content == '!stop') {
-      await client.logout()
+      message.reply("goodbye!")
+      client.logout()
     }
   })
 
