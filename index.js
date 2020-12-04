@@ -16,14 +16,12 @@ bot.on("ready", () => {
   console.log(`Logged in as ${bot.user.tag}!`)
 }) 
 
-
+const args = message.content.slice(1).trim().split(/ +/g);
+const command = args.shift().toLowerCase();
 
 //event listeners
 
 bot.on("message", (message) => {
-  const args = message.content.slice(1).trim().split(/ +/g);
-  const command = args.shift().toLowerCase();
-
   if (message.author.bot) return;
   if (message.content.indexOf(config.prefix) !== 0) return;
 
@@ -47,9 +45,9 @@ bot.on("message", (message) => {
   // prefix + commands
   bot.on("message", (message) => {
     // help
-    if (command === "help") {
-      message.reply('commands: !')
-    }
+    // if (command === "help") {
+    //   message.reply('commands: !')
+    // }
     
     // kick 
     if (command === "kick") {
