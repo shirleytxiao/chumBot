@@ -34,11 +34,11 @@ bot.on("message", (message) => {
   
   // greeting test
   if (message.content === "test") {
-    message.reply("hey!")
+    return message.reply("hey!")
   }  
 
   // kill bot
-  if (message.content == '!stop') {
+  if (message.content == 'stop') {
     message.reply("goodbye!")
     bot.disconnect()
   }
@@ -52,10 +52,10 @@ bot.on("message", (message) => {
   if (command === "kick") {
     let member = message.mentions.members.first();      
     if (!member) {
-      message.reply(`Who are you trying to kick? You must mention a user.`)
+      return message.reply(`Who are you trying to kick? You must mention a user.`)
     }
     if (!member.kickable) {
-      message.reply(`I can't kick this user. Sorry!`)
+      return message.reply(`I can't kick this user. Sorry!`)
     }
     let reason = args.slice(1).join(" ");
     return member
@@ -82,7 +82,7 @@ bot.on("message", (message) => {
         year_name = "senior";
         break;
     }
-    message.reply(`Hello ${message.author.username}, I see you're a ${year_name} from ${location} in the ${committee} committee.`);
+    return message.reply(`Hello ${message.author.username}, I see you're a ${year_name} from ${location} in the ${committee} committee.`);
   }
 
   // event: create event & generate google calendar invite
