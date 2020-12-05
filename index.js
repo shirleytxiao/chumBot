@@ -53,6 +53,11 @@ bot.on("message", (message) => {
     //   .catch((error) => message.reply(`sorry, an error occured.`))
   }
 
+    // chum 
+    if (command === "chum") {
+      return message.reply(`Added you to 'horseback riding' channel!`);
+    }
+
   // aboutme: year, location, committee
   if (command === "aboutme") {
     let [year, location, committee] = args;
