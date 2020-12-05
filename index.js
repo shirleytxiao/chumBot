@@ -42,14 +42,15 @@ bot.on("message", (message) => {
     if (!member) {
       return message.reply(`who are you trying to kick? You must mention a user.`)
     }
+    return message.reply(`${member.user.tag} was kicked.`)
     // if (!member.kickable) {
     //   return message.reply(`I can't kick this user. Sorry!`)
     // }
-    let reason = args.slice(1).join(" ");
-    return member
-      .kick(reason)
-      .then(() => message.reply(`${member.user.tag} was kicked.`))
-      .catch((error) => message.reply(`sorry, an error occured.`))
+    // let reason = args.slice(1).join(" ");
+    // return member
+    //   .kick(reason)
+    //   .then(() => message.reply(`${member.user.tag} was kicked.`))
+    //   .catch((error) => message.reply(`sorry, an error occured.`))
   }
 
   // aboutme: year, location, committee
