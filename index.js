@@ -42,9 +42,9 @@ bot.on("message", (message) => {
     if (!member) {
       return message.reply(`who are you trying to kick? You must mention a user.`)
     }
-    if (!member.kickable) {
-      return message.reply(`I can't kick this user. Sorry!`)
-    }
+    // if (!member.kickable) {
+    //   return message.reply(`I can't kick this user. Sorry!`)
+    // }
     let reason = args.slice(1).join(" ");
     return member
       .kick(reason)
