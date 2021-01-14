@@ -20,7 +20,11 @@ The bot is deployed with AWS onto an EC2 instance.
 
 ## Features 
 - Welcomes user
+- Responds to greetings
 - Kicks user
+- Adds users to voice channel based on common interests
+- Plays music in voice channels (in progress)
+- Creates Google Calendar events (in progress)
 
 
 ## Install
