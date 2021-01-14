@@ -5,7 +5,7 @@ A user-matching, event-scheduling, and chumming Discord bot built for the UC Ber
 
 ChumBot is a Discord bot designed for the UC Berkeley Ascend Discord server, implemented using Discord.js. The bot facilitates chumming by matching users into pairs/groups based on similar interests, and scheduling meeting times based on aligned availability.
 
-The bot will be deployed with Heroku or AWS (TBD).
+The bot is deployed with AWS onto an EC2 instance.
 
 
 ## Contents
